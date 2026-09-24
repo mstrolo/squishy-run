@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Squishy Run</title>
+    <meta name="description" content="Squishy Run: squeeze through walls, race friends online and conquer 72 stages to the stars." />
+    <link rel="icon" href="img/icon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Nunito:wght@600;800&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --navy: #1d2a5b;
+        --sky: #4fa8ff;
+        --orange: #ff7a2f;
+        --paper: #f4f8ff;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        font-family: Nunito, system-ui, sans-serif;
+        color: var(--navy);
+        background: var(--paper);
+      }
+      header {
+        padding: 48px 16px 40px;
+        text-align: center;
+        background: linear-gradient(#6ad0ff, #2f96e0);
+        color: #fff;
+      }
+      header img {
+        width: 112px;
+        height: 112px;
+        border-radius: 26px;
+        box-shadow: 0 8px 0 rgba(29, 42, 91, 0.3);
+      }
+      h1 {
+        margin: 18px 0 6px;
+        font-family: 'Lilita One', sans-serif;
+        font-size: clamp(44px, 10vw, 72px);
+        font-weight: 400;
+        line-height: 1;
+        text-shadow: 0 5px 0 var(--navy);
+      }
+      h1 span {
+        color: var(--orange);
+      }
+      .tag {
+        font-size: 20px;
+        font-weight: 800;
+      }
+      .soon {
+        display: inline-block;
+        margin-top: 18px;
+        padding: 10px 22px;
+        border-radius: 99px;
+        background: #fff;
+        color: var(--navy);
+        font-weight: 800;
+        box-shadow: 0 4px 0 rgba(29, 42, 91, 0.3);
+      }
+      main {
+        max-width: 960px;
+        margin: 0 auto;
+        padding: 32px 16px 48px;
+      }
+      .features {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 14px;
+      }
+      .feature {
+        padding: 16px 18px;
+        border-radius: 18px;
+        background: #fff;
+        box-shadow: 0 4px 0 rgba(29, 42, 91, 0.12);
+      }
+      .feature b {
+        display: block;
+        margin-bottom: 4px;
+        font-family: 'Lilita One', sans-serif;
+        font-size: 20px;
+        font-weight: 400;
+      }
+      .shots {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+        gap: 12px;
+        margin-top: 32px;
+      }
+      .shots img {
+        width: 100%;
+        border-radius: 16px;
+        box-shadow: 0 6px 16px rgba(29, 42, 91, 0.2);
+      }
+      footer {
+        padding: 24px 16px 40px;
+        text-align: center;
+        font-weight: 600;
+      }
+      footer a {
+        color: var(--navy);
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <img src="img/icon.png" alt="Squishy Run icon" />
+      <h1>SQUISHY <span>RUN</span></h1>
+      <div class="tag">Pinch fast. Stay alive.</div>
+      <div class="soon">Coming soon to Google Play</div>
+    </header>
+    <main>
+      <div class="features">
+        <div class="feature"><b>Hold to squeeze</b>Walls slide apart just in time, split bridges close under you. Swipe to jump and dodge.</div>
+        <div class="feature"><b>72 stages</b>From Earth to the Moon to another galaxy, with a boss at the end of every world.</div>
+        <div class="feature"><b>Races for 4</b>Race players live or your friends, send rockets and traps at the racer ahead, and climb the weekly league.</div>
+        <div class="feature"><b>Endless mode</b>20 worlds of its own and one run: how far can you get on the worldwide leaderboard?</div>
+      </div>
+      <div class="shots">
+        <img src="img/shot-1-squeeze.png" alt="Squeezing through walls" loading="lazy" />
+        <img src="img/shot-2-worlds.png" alt="The stage map" loading="lazy" />
+        <img src="img/shot-3-bosses.png" alt="A boss fight" loading="lazy" />
+        <img src="img/shot-6-race.png" alt="A race" loading="lazy" />
+      </div>
+    </main>
+    <footer>
+      <a href="privacy.html">Privacy policy</a> · Contact: <a href="mailto:mstrolo@gmail.com">mstrolo@gmail.com</a>
+    </footer>
+  </body>
+</html>
