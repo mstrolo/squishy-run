@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>JETRIFT - Delete your account</title>
+<style>
+  body { font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; background: #0b1822; color: #e8eef0; margin: 0; }
+  main { max-width: 620px; margin: 0 auto; padding: 32px 16px 64px; line-height: 1.6; }
+  h1 { color: #72f3d3; font-size: 26px; }
+  h2 { color: #f5d49d; font-size: 18px; margin-top: 28px; }
+  input { font-size: 20px; padding: 10px 12px; width: 220px; letter-spacing: 2px; text-transform: uppercase; background: #13273a; color: #e8eef0; border: 1px solid #2a3d4a; border-radius: 8px; }
+  button { font-size: 16px; padding: 12px 18px; margin-left: 8px; background: #a33a2c; color: #fff; border: 0; border-radius: 8px; cursor: pointer; }
+  button:disabled { opacity: 0.5; cursor: default; }
+  label { display: block; margin: 14px 0; }
+  #answer { margin-top: 18px; font-size: 17px; color: #f5d49d; min-height: 26px; }
+  a { color: #72f3d3; }
+</style>
+</head>
+<body>
+<main>
+<h1>Delete your JETRIFT account</h1>
+<p>Developer: Strolo Studios. Deleting an account removes, at once and for good: the player name, the game record (experience, kills, deaths, assists, captures, games, wins), friends and friend requests, clan membership and invitations, season pass progress and presence. If you led a clan, it passes to its oldest member, or is disbanded when you were the last one. Reports you sent about other players are kept for up to 12 months.</p>
+
+<h2>In the game</h2>
+<p>Open SETTINGS on the main menu and tap DELETE ACCOUNT twice.</p>
+
+<h2>On this page</h2>
+<p>Type the account code shown on the game's main menu (CODE, eight letters and digits, like 3F9A-2B7C).</p>
+<div>
+  <input id="code" maxlength="9" placeholder="XXXX-XXXX" autocomplete="off">
+  <button id="go" disabled>Delete account</button>
+</div>
+<label><input type="checkbox" id="sure" style="width:auto"> I understand this cannot be undone.</label>
+<div id="answer"></div>
+<p><a href="privacy-policy.html">Privacy policy</a></p>
+</main>
+<script>
+  // The database address and its publishable key: public by design, they only reach the functions
+  // the game itself may call.
+  const BASE = "https://utsghkztkhvildgcpnag.supabase.co/rest/v1/rpc/jetrift_delete_by_code";
+  const KEY = "sb_publishable_ZCZGVDnVIbFoah4ihAyuvg_xAEsWlAY";
+  const code = document.getElementById("code");
+  const sure = document.getElementById("sure");
+  const go = document.getElementById("go");
+  const answer = document.getElementById("answer");
+  const clean = () => code.value.replace(/[^0-9a-fA-F]/g, "").toLowerCase();
+  const ready = () => { go.disabled = !(clean().length === 8 && sure.checked); };
+  code.addEventListener("input", ready);
+  sure.addEventListener("change", ready);
+  const WORDS = {
+    "deleted": "The account was deleted.",
+    "none": "No account has that code. It may already be deleted.",
+    "ambiguous": "That code matches more than one account. Please delete from inside the game.",
+    "bad code": "A code is eight letters (A to F) and digits."
+  };
+  go.addEventListener("click", async () => {
+    go.disabled = true;
+    answer.textContent = "Deleting...";
+    try {
+      const reply = await fetch(BASE, { method: "POST", headers: { "Content-Type": "application/json", "apikey": KEY }, body: JSON.stringify({ p_code: clean() }) });
+      const text = reply.ok ? await reply.json() : "";
+      answer.textContent = WORDS[text] || "It did not work. Please try again later.";
+    } catch (error) {
+      answer.textContent = "It did not work. Please check the connection and try again.";
+    }
+    sure.checked = false;
+  });
+</script>
+</body>
+</html>
